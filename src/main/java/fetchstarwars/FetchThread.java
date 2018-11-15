@@ -21,7 +21,7 @@ import java.util.concurrent.Future;
  */
 public class FetchThread {
 
-    public List<Future<String>> fetchStuff() throws InterruptedException, ProtocolException, IOException, ExecutionException {
+    public String fetchStuff() throws InterruptedException, ProtocolException, IOException, ExecutionException {
 
         ExecutorService es = Executors.newFixedThreadPool(10);
         List<URL> urls = new ArrayList<>();
@@ -36,9 +36,13 @@ public class FetchThread {
             list.add(future);
         }
         es.shutdown();
-//        for () {
-//            #TODO make future into json and return it
-//        }
-        return list;
+        String json = "{\"person\":[";
+        for (int i = 0; i < list.size() -1; i++) {
+            json += list.get(i).get() + ",";
+        }
+            json += list.get(list.size()-1).get();
+        json += "]}";
+       
+        return json;
     }
 }
