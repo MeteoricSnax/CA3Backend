@@ -18,11 +18,11 @@ public class SetupTestUsers {
 //    em.getTransaction().begin();
 //    Role userRole = new Role("user");
 //    Role adminRole = new Role("admin");
-//    User user = new User("user", "");
+//    User user = new User("user", "user");
 //    user.addRole(userRole);
-//    User admin = new User("admin", "");
+//    User admin = new User("admin", "admin");
 //    admin.addRole(adminRole);
-//    User both = new User("user_admin", "");
+//    User both = new User("user_admin", "user_admin");
 //    both.addRole(userRole);
 //    both.addRole(adminRole);
 //    em.persist(userRole);
@@ -31,10 +31,10 @@ public class SetupTestUsers {
 //    em.persist(admin);
 //    em.persist(both);
 //    em.getTransaction().commit();
-    User user = em.find(User.class, "user");
+    User user2 = em.find(User.class, "user");
 //    System.out.println("PW: " + user.getUserPass());
-    System.out.println("Testing user with OK password: " + user.verifyPassword(""));
-    System.out.println("Testing user with wrong password: " + user.verifyPassword(""));
+    System.out.println("Testing user with OK password: " + user2.verifyPassword("user"));
+    System.out.println("Testing user with wrong password: " + user2.verifyPassword(""));
 //    System.out.println("Created TEST Users");
   }
 
