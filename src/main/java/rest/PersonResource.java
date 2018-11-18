@@ -54,6 +54,13 @@ public class PersonResource {
         return Response.ok().entity(ft.fetchStuff()).build();
     }
 
+    @GET
+    @Path("unprotected")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getUnprotectedJson() throws InterruptedException, IOException, ProtocolException, ExecutionException {
+        FetchThread ft = new FetchThread();
+        return Response.ok().entity(ft.fetchStuff()).build();
+    }
     /**
      * PUT method for updating or creating an instance of PersonResource
      * @param content representation for the resource
