@@ -34,9 +34,6 @@ public class DemoResource {
     @Path("user")
     @RolesAllowed("user")
     public String getFromUser(){
-//        if (securityContext.getUserPrincipal().getName() == null) {
-//            throw new NotFoundException("Unable to find a person with the provided ID");
-//        }
         String user = securityContext.getUserPrincipal().getName();
         System.out.println(user);
         return "\"Hello from USER: "+ user+"\"";

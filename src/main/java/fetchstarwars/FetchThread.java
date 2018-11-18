@@ -36,12 +36,12 @@ public class FetchThread {
             list.add(future);
         }
         es.shutdown();
-        String json = "{\"person\":[";
+        String json = "[";
         for (int i = 0; i < list.size() -1; i++) {
             json += list.get(i).get() + ",";
         }
             json += list.get(list.size()-1).get();
-        json += "]}";
+        json += "]";
        
         return json;
     }

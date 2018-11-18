@@ -11,6 +11,7 @@ import fetchstarwars.FetchThread;
 import java.io.IOException;
 import java.net.ProtocolException;
 import java.util.concurrent.ExecutionException;
+import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
@@ -20,6 +21,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.SecurityContext;
 
 /**
  * REST Web Service
@@ -31,7 +33,9 @@ public class PersonResource {
 
     @Context
     private UriInfo context;
-
+    
+    @Context
+    SecurityContext securityContext;
     /**
      * Creates a new instance of PersonResource
      */
@@ -43,6 +47,7 @@ public class PersonResource {
      * @return an instance of java.lang.String
      */
     @GET
+    @RolesAllowed({"user", "admin"})
     @Produces(MediaType.APPLICATION_JSON)
     public Response getJson() throws InterruptedException, IOException, ProtocolException, ExecutionException {
         FetchThread ft = new FetchThread();
