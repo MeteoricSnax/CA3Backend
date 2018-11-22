@@ -16,22 +16,22 @@ public class SetupTestUsers {
     // CHANGE the three passwords below, before you uncomment and execute the code below
       
 
-//    em.getTransaction().begin();
-//    Role userRole = new Role("user");
-//    Role adminRole = new Role("admin");
-//    User user = new User("user", "");
-//    user.addRole(userRole);
-//    User admin = new User("admin", "");
-//    admin.addRole(adminRole);
-//    User both = new User("user_admin", "");
-//    both.addRole(userRole);
-//    both.addRole(adminRole);
-//    em.persist(userRole);
-//    em.persist(adminRole);
-//    em.persist(user);
-//    em.persist(admin);
-//    em.persist(both);
-//    em.getTransaction().commit();
+    em.getTransaction().begin();
+    Role userRole = new Role("user");
+    Role adminRole = new Role("admin");
+    User user = new User("user", "");
+    user.addRole(userRole);
+    User admin = new User("admin", "");
+    admin.addRole(adminRole);
+    User both = new User("user_admin", "");
+    both.addRole(userRole);
+    both.addRole(adminRole);
+    em.persist(userRole);
+    em.persist(adminRole);
+    em.persist(user);
+    em.persist(admin);
+    em.persist(both);
+    em.getTransaction().commit();
     User user2 = em.find(User.class, "user");
 
 //    System.out.println("PW: " + user.getUserPass());
