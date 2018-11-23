@@ -17,19 +17,20 @@ import javax.persistence.Query;
  * @author alber
  */
 public class CandyFacade {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("pu");
-        
-        public List<Candy> getAllCandy(){
+
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory("pu");
+
+    public List<Candy> getAllCandy() {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         Query query = em.createQuery("SELECT c FROM Candy c");
         List<Candy> candy = (List<Candy>) query.getResultList();
         em.close();
-        return candy; 
-        
-        
+        return candy;
+
     }
-    public Candy getCandyById(int id){
+
+    public Candy getCandyById(int id) {
         EntityManager em = emf.createEntityManager();
         Query query = em.createQuery("SELECT c FROM Candy c WHERE c.id =:id");
         query.setParameter("id", id);
