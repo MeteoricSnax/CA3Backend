@@ -26,7 +26,7 @@ public class ApplicationConfig extends Application {
     resources.add(exceptions.GenericExceptionMapper.class);
     resources.add(rest.CandyResource.class);
     resources.add(rest.DemoResource.class);
-    resources.add(rest.PersonResource.class);
+    resources.add(rest.UserResource.class);
         resources.add(security.JWTAuthenticationFilter.class);
         resources.add(security.LoginEndpoint.class);
   }
