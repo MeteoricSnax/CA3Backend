@@ -7,7 +7,7 @@ package rest;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import fetchstarwars.FetchThread;
+import fetchstarwars.FetchThreadSWAPI;
 import java.io.IOException;
 import java.net.ProtocolException;
 import java.util.concurrent.ExecutionException;
@@ -50,7 +50,7 @@ public class PersonResource {
     @RolesAllowed({"user", "admin"})
     @Produces(MediaType.APPLICATION_JSON)
     public Response getJson() throws InterruptedException, IOException, ProtocolException, ExecutionException {
-        FetchThread ft = new FetchThread();
+        FetchThreadSWAPI ft = new FetchThreadSWAPI();
         return Response.ok().entity(ft.fetchStuff()).build();
     }
 
@@ -58,7 +58,7 @@ public class PersonResource {
     @Path("unprotected")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getUnprotectedJson() throws InterruptedException, IOException, ProtocolException, ExecutionException {
-        FetchThread ft = new FetchThread();
+        FetchThreadSWAPI ft = new FetchThreadSWAPI();
         return Response.ok().entity(ft.fetchStuff()).build();
     }
     /**

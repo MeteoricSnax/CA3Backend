@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fetchstarwars;
+package fetchcandy;
 
+import fetchstarwars.*;
 import java.io.IOException;
 import java.net.ProtocolException;
 import java.net.URL;
@@ -21,14 +22,14 @@ import java.util.concurrent.Future;
  */
 public class FetchThread {
 
-    public String fetchStuff() throws InterruptedException, ProtocolException, IOException, ExecutionException {
+    public String fetchStuff(ArrayList<URL> urls) throws InterruptedException, ProtocolException, IOException, ExecutionException {
 
         ExecutorService es = Executors.newFixedThreadPool(10);
-        List<URL> urls = new ArrayList<>();
-        
-        for (int i = 0; i < 5; i++) {
-            urls.add(new URL("https://swapi.co/api/people/" + (i + 1)));
-        }
+//        List<URL> urls = new ArrayList<>();
+//        
+//        for (int i = 0; i < 5; i++) {
+//            urls.add(new URL("https://swapi.co/api/people/" + (i + 1)));
+//        }
         
         List<Future<String>> list = new ArrayList<>();
         for (URL s : urls) {
