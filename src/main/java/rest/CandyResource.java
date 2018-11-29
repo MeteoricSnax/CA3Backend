@@ -91,6 +91,8 @@ public class CandyResource {
         Candy savedCandy = candyFacade.getCandyById(id);
         if(newCandy.getName()!=null)
             savedCandy.setName(newCandy.getName());
+        if(newCandy.getStock()!= 0)
+            savedCandy.setStock(newCandy.getStock());
         if(newCandy.getFlavour()!=null)
             savedCandy.setFlavour(newCandy.getFlavour());
         if(newCandy.getType()!=null)
