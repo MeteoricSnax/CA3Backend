@@ -28,7 +28,7 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Candy.findAll", query = "SELECT c FROM Candy c")
     , @NamedQuery(name = "Candy.findById", query = "SELECT c FROM Candy c WHERE c.id = :id")
     , @NamedQuery(name = "Candy.findByName", query = "SELECT c FROM Candy c WHERE c.name = :name")
-    , @NamedQuery(name = "Candy.findByWeight", query = "SELECT c FROM Candy c WHERE c.weight = :weight")
+    , @NamedQuery(name = "Candy.findByStock", query = "SELECT c FROM Candy c WHERE c.stock = :stock")
     , @NamedQuery(name = "Candy.findByFlavour", query = "SELECT c FROM Candy c WHERE c.flavour = :flavour")
     , @NamedQuery(name = "Candy.findByType", query = "SELECT c FROM Candy c WHERE c.type = :type")
     , @NamedQuery(name = "Candy.findByImg", query = "SELECT c FROM Candy c WHERE c.img = :img")})
@@ -46,8 +46,8 @@ public class Candy implements Serializable {
     @Column(name = "name")
     private String name;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "weight")
-    private Double weight;
+    @Column(name = "stock")
+    private int stock;
     @Size(max = 45)
     @Column(name = "flavour")
     private String flavour;
@@ -57,7 +57,7 @@ public class Candy implements Serializable {
     @Size(max = 45)
     @Column(name = "img")
     private String img;
-
+    
     public Candy() {
     }
 
@@ -86,12 +86,12 @@ public class Candy implements Serializable {
         this.name = name;
     }
 
-    public Double getWeight() {
-        return weight;
+    public int getStock() {
+        return stock;
     }
 
-    public void setWeight(Double weight) {
-        this.weight = weight;
+    public void setStock(int stock) {
+        this.stock = stock;
     }
 
     public String getFlavour() {

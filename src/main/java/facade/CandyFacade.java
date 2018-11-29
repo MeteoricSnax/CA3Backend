@@ -25,7 +25,7 @@ public class CandyFacade {
     public List<Candy> getAllCandy() {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        Query query = em.createQuery("SELECT c FROM Candy c");
+        Query query = em.createQuery("SELECT c FROM Candy c WHERE c.stock > 0 AND c.stock IS NOT NULL");
         List<Candy> candy = (List<Candy>) query.getResultList();
         em.close();
         return candy;
