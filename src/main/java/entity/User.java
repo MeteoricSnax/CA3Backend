@@ -32,6 +32,10 @@ public class User implements Serializable {
   private String userName;
   @Basic(optional = false)
   @NotNull
+  @Column(name = "user_Email", length = 25, unique = true)
+  private String userEmail;
+  @Basic(optional = false)
+  @NotNull
   @Size(min = 1, max = 255)
   @Column(name = "user_pass")
   private String userPass;
@@ -82,6 +86,14 @@ public class User implements Serializable {
     this.userName = userName;
   }
 
+  public String getUserEmail() {
+    return userEmail;
+  }
+
+  public void setUserEmail(String userEmail) {
+    this.userEmail = userEmail;
+  }
+  
   public String getUserPass() {
     return this.userPass;
   }
