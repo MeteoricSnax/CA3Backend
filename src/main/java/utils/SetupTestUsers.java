@@ -32,7 +32,7 @@ public class SetupTestUsers {
     em.persist(admin);
     em.persist(both);
     em.getTransaction().commit();
-    User user2 = em.find(User.class, "user");
+    User user2 = (User) em.createQuery("SELECT u FROM User u WHERE u.userName =:userName").setParameter("userName", "user").getSingleResult();
 
 //    System.out.println("PW: " + user.getUserPass());
     System.out.println("Testing user with OK password: " + user2.verifyPassword("user"));
