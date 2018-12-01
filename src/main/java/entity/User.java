@@ -2,8 +2,10 @@ package entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -20,6 +23,9 @@ import org.mindrot.jbcrypt.BCrypt;
 @Entity
 @Table(name = "users")
 public class User implements Serializable {
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private Collection<CustomerOrder> customerOrderCollection;
 
   private static final long serialVersionUID = 1L;
   @Id
@@ -113,5 +119,13 @@ public class User implements Serializable {
   public void addRole(Role userRole) {
     roleList.add(userRole);
   }
+
+    public Collection<CustomerOrder> getCustomerOrderCollection() {
+        return customerOrderCollection;
+    }
+
+    public void setCustomerOrderCollection(Collection<CustomerOrder> customerOrderCollection) {
+        this.customerOrderCollection = customerOrderCollection;
+    }
 
 }
