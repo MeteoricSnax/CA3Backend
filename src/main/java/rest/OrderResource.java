@@ -54,7 +54,7 @@ public class OrderResource {
     @GET
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)    
-    public Response getCandyById(@PathParam("id") int id){
+    public Response getOrderByOrderId(@PathParam("id") int id){
         return Response.ok().entity(gson.toJson(orderFacade.getOrderByOrderId(id))).build();
     }
 
