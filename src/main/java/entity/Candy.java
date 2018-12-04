@@ -59,8 +59,6 @@ public class Candy implements Serializable {
     @Size(max = 45)
     @Column(name = "img")
     private String img;
-    @ManyToMany(mappedBy = "candy")
-    private List<CustomerOrder> customerOrders;
     
     public Candy() {
     }
