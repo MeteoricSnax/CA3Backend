@@ -6,12 +6,14 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -57,6 +59,8 @@ public class Candy implements Serializable {
     @Size(max = 45)
     @Column(name = "img")
     private String img;
+    @ManyToMany(mappedBy = "candy")
+    private List<CustomerOrder> customerOrders;
     
     public Candy() {
     }
