@@ -55,7 +55,7 @@ public class CandyResource {
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getJson() {
+    public Response getAllCandy() {
         return Response.ok().entity(gson.toJson(candyFacade.getAllCandy())).build();
     }
     
