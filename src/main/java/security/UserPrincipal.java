@@ -8,20 +8,27 @@ import java.util.List;
 
 public class UserPrincipal implements Principal {
 
+  private int userId;
   private String username;
   private List<String> roles = new ArrayList<>();
 
   /* Create a UserPrincipal, given the Entity class User*/
   public UserPrincipal(User user) {
+    this.userId = user.getUserId();
     this.username = user.getUserName();
     this.roles = user.getRolesAsStrings();
   }
 
-  public UserPrincipal(String username, String... roles) {
+  public UserPrincipal(int userId, String username, String... roles) {
     super();
+    this.userId = userId;
     this.username = username;
     this.roles = Arrays.asList(roles);
   }
+
+    public int getUserId() {
+        return userId;
+    }
 
   @Override
   public String getName() {
