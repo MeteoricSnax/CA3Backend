@@ -7,7 +7,10 @@ package rest;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import entity.Candy;
 import entity.CustomerOrder;
+import entity.OrderLine;
+import entity.CandyList;
 import facade.OrderFacade;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
@@ -62,10 +65,16 @@ public class OrderResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response createOrder(String content) {
-        CustomerOrder newOrder = gson.fromJson(content, CustomerOrder.class);
-        System.out.println("newCandy: " + newOrder);
-        orderFacade.createOrder(newOrder);
-        return Response.ok().entity(gson.toJson(newOrder)).build();
+        System.out.println("JSON: " + content);
+        CandyList list = gson.fromJson(content, CandyList.class);
+        CustomerOrder order = new CustomerOrder();
+        for(Candy c : list.getCandy()){
+            OrderLine ol = new OrderLine(c.getWeight(), c);
+            order.addOrderLine(ol);
+        }
+        orderFacade.createOrder(1, order);
+        String str = "success";
+        return Response.ok().entity(gson.toJson(str)).build();
     }
     
     /**

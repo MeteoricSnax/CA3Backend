@@ -24,9 +24,6 @@ import org.mindrot.jbcrypt.BCrypt;
 @Table(name = "users")
 public class User implements Serializable {
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    private Collection<CustomerOrder> customerOrderCollection;
-
   private static final long serialVersionUID = 1L;
   @Id
   @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -50,6 +47,9 @@ public class User implements Serializable {
     @JoinColumn(name = "role_name", referencedColumnName = "role_name")})
   @ManyToMany
   private List<Role> roleList = new ArrayList();
+  
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+  private List<CustomerOrder> orders = new ArrayList();
 
   public List<String> getRolesAsStrings() {
     if (roleList.isEmpty()) {
@@ -75,6 +75,14 @@ public class User implements Serializable {
     String hash = BCrypt.hashpw(userPass, salt);
     this.userPass = hash;
   }
+
+    public List<CustomerOrder> getOrders() {
+        return orders;
+    }
+
+    public void addOrder(CustomerOrder order) {
+        this.orders.add(order);
+    }
 
   public int getUserId() {
     return userId;
@@ -119,13 +127,5 @@ public class User implements Serializable {
   public void addRole(Role userRole) {
     roleList.add(userRole);
   }
-
-    public Collection<CustomerOrder> getCustomerOrderCollection() {
-        return customerOrderCollection;
-    }
-
-    public void setCustomerOrderCollection(Collection<CustomerOrder> customerOrderCollection) {
-        this.customerOrderCollection = customerOrderCollection;
-    }
 
 }

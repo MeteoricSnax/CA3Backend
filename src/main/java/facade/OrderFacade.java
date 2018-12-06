@@ -6,6 +6,7 @@
 package facade;
 
 import entity.CustomerOrder;
+import entity.User;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -38,10 +39,12 @@ public class OrderFacade {
         em.close();
         return order;
     }
-    
-    public CustomerOrder createOrder(CustomerOrder order){
+
+    public CustomerOrder createOrder(int userid, CustomerOrder order){
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
+        User user = em.find(User.class, userid);
+        order.setUser(user);
         em.persist(order);
         em.getTransaction().commit();
         em.close();

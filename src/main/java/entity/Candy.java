@@ -6,6 +6,7 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -16,7 +17,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -59,6 +62,8 @@ public class Candy implements Serializable {
     @Size(max = 45)
     @Column(name = "img")
     private String img;
+    @Transient
+    private int weight;
     
     public Candy() {
     }
@@ -70,6 +75,19 @@ public class Candy implements Serializable {
     public Candy(Integer id, String name) {
         this.id = id;
         this.name = name;
+    }
+
+    public Candy(String name, int stock) {
+        this.name = name;
+        this.stock = stock;
+    }
+
+    public int getWeight() {
+        return weight;
+    }
+
+    public void setWeight(int weight) {
+        this.weight = weight;
     }
 
     public Integer getId() {

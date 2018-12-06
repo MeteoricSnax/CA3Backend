@@ -1,2 +1,2 @@
-drop database ca3db;
-create database ca3db;
+drop database jwtdbtest;
+create database jwtdbtest;

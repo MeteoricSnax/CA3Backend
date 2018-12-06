@@ -6,9 +6,11 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -48,8 +50,13 @@ public class CustomerOrder implements Serializable {
     @JoinColumn(name = "userid", referencedColumnName = "user_id")
     @ManyToOne(optional = false)
     private User user;
-    @OneToMany
-    private List<Candy> candy;
+//    @OneToMany
+//    private List<Candy> candy;
+    
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "order_id")
+    private List<OrderLine> orderlines = new ArrayList();
+    
     public CustomerOrder() {
     }
 
@@ -81,6 +88,21 @@ public class CustomerOrder implements Serializable {
         this.user = user;
     }
 
+    public List<OrderLine> getOrderlines() {
+        return orderlines;
+    }
+
+//    public void addOrderline(Candy candy, int weight) {
+//        OrderLine orderline = new OrderLine(weight, candy);
+//        orderlines.add(orderline);
+//    }
+    public void addOrderLine(OrderLine ol) {
+        this.orderlines.add(ol);
+    }
+    public void setOrderlines(List<OrderLine> orderlines) {
+        this.orderlines = orderlines;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 0;
