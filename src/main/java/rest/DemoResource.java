@@ -32,7 +32,7 @@ public class DemoResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("user")
-    @RolesAllowed("user")
+    @RolesAllowed({"user"})
     public String getFromUser(){
         String user = securityContext.getUserPrincipal().getName();
         System.out.println(user);
@@ -42,7 +42,7 @@ public class DemoResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("admin")
-    @RolesAllowed("admin")
+    @RolesAllowed({"admin"})
     public String getFromAdmin() {
         String user = securityContext.getUserPrincipal().getName();
         return "\"Hello from ADMIN: "+ user+"\"";
